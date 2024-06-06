@@ -6,6 +6,12 @@ pipeline {
     }
 
     stages {
+      stage('Prepare') {
+            steps {
+                sh 'sudo chown -R $(whoami):$(whoami) ~/.npm || true'
+                sh 'npm config set cache ~/npm-cache --global'
+            }
+        }
       stage ('Build') {
         steps {
           script {
