@@ -6,6 +6,13 @@ pipeline {
     }
 
     stages {
+      stage ('Clean containers') {
+        steps {
+          script {
+            sh 'docker stop $(docker ps -a -q)'
+          }
+        }
+      }
       stage ('Build') {
         steps {
           script {
